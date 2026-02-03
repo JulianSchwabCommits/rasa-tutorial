@@ -1,4 +1,8 @@
 flows:
+  pattern_completed:
+    description: Completion of a user's flow
+    steps:
+      - action: utter_change_topic
   transfer_money:
     description: Help users send money to friends and family.
     steps:
@@ -30,3 +34,5 @@ flows:
           - else: transfer_successful
       - action: utter_transfer_complete
         id: transfer_successful
+      - set_slots:
+          - final_confirmation: null

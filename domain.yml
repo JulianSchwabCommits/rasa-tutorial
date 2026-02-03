@@ -1,6 +1,5 @@
 version: "3.1"
 
-
 actions:
   - action_check_sufficient_funds
   - action_validate_recipient
@@ -30,13 +29,15 @@ responses:
     - text: "To who?"
       metadata:
         rephrase: True   
+  utter_change_topic:
+    - text: "Is there anything else I can help you with?"
   utter_insufficient_funds:
     - text: "You don't have enough money."
       metadata:
         rephrase: True          
 
   utter_recipient_not_found:
-    - text: "Sorry, I couldn't find that recipient."
+    - text: "I don't have {recipient} in my list of recipients."
       metadata:
         rephrase: True
 
@@ -45,9 +46,13 @@ responses:
       metadata:
         rephrase: True
   utter_ask_final_confirmation:
-    - text: "Please confirm: you want to transfer {amount} to {recipient}?"
+    - text: "Please confirm: you want to transfer {amount} to {recipient}? Please answer yes or no."
       metadata:
         rephrase: True
+        llm_prompt: |
+          Ask the user everytime to confirm whether they want to proceed with the transfer.
+          Do not assume confirmation from previous messages.
+          Wait for explicit yes/no response.
   utter_transfer_cancelled:
     - text: "Your transfer has been cancelled."
       metadata:
