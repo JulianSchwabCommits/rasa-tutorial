@@ -34,5 +34,4 @@ flows:
           - else: transfer_successful
       - action: utter_transfer_complete
         id: transfer_successful
-      - set_slots:
-          - final_confirmation: null
+        next: END
