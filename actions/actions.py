@@ -16,3 +16,18 @@ class ActionCheckSufficientFunds(Action):
         transfer_amount = tracker.get_slot("amount")
         has_sufficient_funds = transfer_amount <= balance
         return [SlotSet("has_sufficient_funds", has_sufficient_funds)]
+
+class ActionValidateRecipient(Action):
+    def name(self) -> Text:
+        return "action_validate_recipient"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        recipient = tracker.get_slot("recipient")
+        
+        valid_users = ["lara", "julian", "marcel", "parvaz"]
+        
+        recipient_exists = recipient.lower() in valid_users if recipient else False
+        
+        return [SlotSet("recipient_exists", recipient_exists)]

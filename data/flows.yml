@@ -3,8 +3,16 @@ flows:
     description: Help users send money to friends and family.
     steps:
       - collect: recipient
+      - action: action_validate_recipient
+        next:
+          - if: not slots.recipient_exists
+            then:
+              - action: utter_recipient_not_found
+                next: END
+          - else: collect_amount
       - collect: amount
-        description: the number of US dollars to send
+        id: collect_amount
+        description: the number of swiss francs to send
       - action: action_check_sufficient_funds
         next:
           - if: not slots.has_sufficient_funds
@@ -22,4 +30,3 @@ flows:
           - else: transfer_successful
       - action: utter_transfer_complete
         id: transfer_successful
-

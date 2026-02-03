@@ -1,2 +1,4 @@
 .rasa-tutorial-venv/*
 .rasa/*
+models/*
+__pycache__/
