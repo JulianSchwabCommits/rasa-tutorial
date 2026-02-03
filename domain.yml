@@ -23,18 +23,30 @@ slots:
 responses:
   utter_ask_recipient:
     - text: "To who?"
+      metadata:
+        rephrase: True   
   utter_insufficient_funds:
     - text: "You dont have enough money."
+      metadata:
+        rephrase: True          
 
   utter_ask_amount:
     - text: "How much?"
+      metadata:
+        rephrase: True
   utter_ask_final_confirmation:
     - text: "Please confirm: you want to transfer {amount} to {recipient}?"
+      metadata:
+        rephrase: True
   utter_transfer_cancelled:
     - text: "Your transfer has been cancelled."
+      metadata:
+        rephrase: True
 
   utter_transfer_complete:
     - text: "I've send {amount} to {recipient}. Do you want to send money to someone else?"
+      metadata:
+        rephrase: True
 
   utter_free_chitchat_response:
     - text: "placeholder"
